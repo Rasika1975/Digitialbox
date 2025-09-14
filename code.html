@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Box | Unplug. Refresh. Reconnect.</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-green: #4a7c5f;
+            --light-green: #8db596;
+            --soft-beige: #f5f0e6;
+            --warm-beige: #e8dccc;
+            --soft-blue: #a5c9ca;
+            --dark-blue: #5585b5;
+            --dark-gray: #333;
+            --light-gray: #f5f5f5;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--dark-gray);
+            line-height: 1.6;
+            background-color: #fff;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary-green);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease-in-out;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            transition: padding 0.3s ease-in-out;
+        }
+
+        header.scrolled .header-container {
+            padding: 10px 0;
+            background-color: rgba(255, 255, 255, 0.97);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo h1 {
+            margin-bottom: 0;
+            font-size: 1.8rem;
+        }
+        
+        .logo span {
+            color: var(--primary-green);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark-gray);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary-green);
+        }
+        
+        nav ul li a.active {
+            color: var(--primary-green);
+            font-weight: 700;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(74, 124, 95, 0.8), rgba(74, 124, 95, 0.6)), url('https://images.unsplash.com/photo-1506744038136-46273834b3fb') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            color: white;
+            text-align: center;
+            margin-top: 80px;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--primary-green);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: 2px solid var(--primary-green);
+        }
+        
+        .btn:hover {
+            background-color: transparent;
+            color: white;
+            border-color: white;
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+            margin-left: 15px;
+        }
+        
+        .btn-outline:hover {
+            background-color: white;
+            color: var(--primary-green);
+        }
+        
+        /* Section Styles */
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--primary-green);
+        }
+        
+        /* About Section */
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* Services Section */
+        .services {
+            background-color: var(--soft-beige);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden; 
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .service-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .service-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .service-card:hover .service-image img {
+            transform: scale(1.1);
+        }
+        
+        .service-content {
+            padding: 20px;
+        }
+        
+        .service-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        
+        /* Pricing Section */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .pricing-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            padding: 30px;
+            transition: transform 0.3s;
+            border: 1px solid var(--warm-beige);
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .price {
+            font-size: 2.5rem;
+            color: var(--primary-green);
+            margin: 20px 0;
+        }
+        
+        .price span {
+            font-size: 1rem;
+            color: var(--dark-gray);
+        }
+        
+        .pricing-features {
+            list-style: none;
+            margin: 20px 0;
+            text-align: left;
+        }
+        
+        .pricing-features li {
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .pricing-features li::before {
+            content: '✓';
+            color: var(--primary-green);
+            position: absolute;
+            left: 0;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            background-color: var(--soft-beige);
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .testimonial-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 15px;
+        }
+        
+        .author-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .author-details h4 {
+            margin-bottom: 5px;
+        }
+        
+        /* Blog Section */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .blog-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .blog-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .blog-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .blog-card:hover .blog-image img {
+            transform: scale(1.1);
+        }
+        
+        .blog-content {
+            padding: 20px;
+        }
+        
+        .blog-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+        
+        .blog-meta {
+            color: #777;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+        
+        /* Contact Section */
+        .contact {
+            background-color: var(--soft-beige);
+        }
+        
+        .contact-container {
+            display: flex;
+            gap: 40px;
+        }
+        
+        .contact-info {
+            flex: 1;
+        }
+        
+        .contact-form {
+            flex: 1;
+        }
+        
+        .info-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .info-icon {
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: white;
+            font-size: 1.2rem;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: 'Open Sans', sans-serif;
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-gray);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .footer-col h3 {
+            color: white;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--primary-green);
+        }
+        
+        .footer-col p {
+            margin-bottom: 20px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary-green);
+            transform: translateY(-5px);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .contact-container {
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 80%;
+                height: calc(100vh - 80px);
+                background-color: white;
+                flex-direction: column;
+                transition: all 0.3s;
+                box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
+            }
+            
+            nav.active {
+                left: 0;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                padding: 30px;
+            }
+            
+            nav ul li {
+                margin: 15px 0;
+            }
+            
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+            
+            .btn {
+                display: block;
+                margin: 10px auto;
+                width: 200px;
+            }
+            
+            .btn-outline {
+                margin-left: 0;
+            }
+        }
+
+        /* Scroll to Top Button */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary-green);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            z-index: 999;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .scroll-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        /* Animation on Scroll */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .animate-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <h1>Digital<span>Box</span></h1>
+            </div>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h2>Unplug. Refresh. Reconnect.</h2>
+            <p>Escape digital overload and rediscover life's simple pleasures with our curated digital detox experiences.</p>
+            <a href="#pricing" class="btn">Book Now</a>
+            <a href="#about" class="btn btn-outline">Learn More</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>About Us</h2>
+            </div>
+            <div class="about-content animate-on-scroll">
+                <div class="about-text">
+                    <h3>Our Mission</h3>
+                    <p>At Digital Box, we believe in the power of disconnection to foster genuine human connection and personal growth. In today's hyper-connected world, we provide sanctuaries where you can step away from screens and reconnect with yourself, nature, and others.</p>
+                    <p>Founded in 2020, our wellness retreats have helped thousands of urban professionals, students, and families find balance in their digital lives through carefully crafted programs that combine mindfulness, nature immersion, and holistic activities.</p>
+                    <a href="#contact" class="btn">Get in Touch</a>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1545205597-3d9d02c29597" alt="People meditating in nature">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Services</h2>
+            </div>
+            <div class="services-grid">
+                <div class="service-card animate-on-scroll">
+                    <div class="service-image">
+                        <img src="https://images.unsplash.com/photo-1508873696983-2dfd5898f08b" alt="Weekend Retreat">
+                    </div>
+                    <div class="service-content">
+                        <h3>Weekend Digital Detox Retreats</h3>
+                        <p>Escape for 2-3 days to our serene nature locations. Participate in yoga, meditation, and mindfulness sessions while completely disconnecting from digital devices.</p>
+                    </div>
+                </div>
+                <div class="service-card animate-on-scroll">
+                    <div class="service-image">
+                        <img src="https://images.unsplash.com/photo-1576086213369-97a306d36557" alt="Wellness Workshop">
+                    </div>
+                    <div class="service-content">
+                        <h3>Wellness Workshops</h3>
+                        <p>Join our expert-led workshops on yoga, meditation, journaling, and art therapy. Learn practical techniques to manage screen time and reduce digital stress.</p>
+                    </div>
+                </div>
+                <div class="service-card animate-on-scroll">
+                    <div class="service-image">
+                        <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca" alt="Corporate Wellness">
+                    </div>
+                    <div class="service-content">
+                        <h3>Corporate Wellness Programs</h3>
+                        <p>Help your team combat digital fatigue and burnout with our tailored corporate programs. Improve productivity, creativity, and overall well-being.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <div class="section-title">
+                <h2>Subscription Plans</h2>
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card animate-on-scroll">
+                    <h3>Weekend Escape</h3>
+                    <div class="price">₹7,999 <span>/person</span></div>
+                    <ul class="pricing-features">
+                        <li>2 nights accommodation</li>
+                        <li>All meals (organic, locally sourced)</li>
+                        <li>Daily yoga & meditation sessions</li>
+                        <li>Nature walks & mindfulness activities</li>
+                        <li>Digital detox kit</li>
+                    </ul>
+                    <a href="#" class="btn">Book Now</a>
+                </div>
+                <div class="pricing-card animate-on-scroll">
+                    <h3>Monthly Membership</h3>
+                    <div class="price">₹4,999 <span>/month</span></div>
+                    <ul class="pricing-features">
+                        <li>One weekend retreat per month</li>
+                        <li>Unlimited access to workshops</li>
+                        <li>Weekly online support group</li>
+                        <li>10% discount on additional services</li>
+                        <li>Wellness resources library access</li>
+                    </ul>
+                    <a href="#" class="btn">Subscribe</a>
+                </div>
+                <div class="pricing-card animate-on-scroll">
+                    <h3>Corporate Package</h3>
+                    <div class="price">Custom <span>Pricing</span></div>
+                    <ul class="pricing-features">
+                        <li>Customized program for your team</li>
+                        <li>On-site or off-site options</li>
+                        <li>Pre and post-program assessments</li>
+                        <li>Follow-up support sessions</li>
+                        <li>Detailed impact report</li>
+                    </ul>
+                    <a href="#contact" class="btn">Get Quote</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>What Our Clients Say</h2>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card animate-on-scroll">
+                    <div class="testimonial-text">
+                        <p>"The digital detox retreat was exactly what I needed. I returned feeling refreshed, recharged, and with a healthier relationship with my devices. Highly recommend!"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-image">
+                            <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Priya Sharma">
+                        </div>
+                        <div class="author-details">
+                            <h4>Priya Sharma</h4>
+                            <p>Marketing Executive</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card animate-on-scroll">
+                    <div class="testimonial-text">
+                        <p>"Our company's team-building retreat with Digital Box was transformative. We learned to communicate better without constant digital interruptions."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-image">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Rahul Kapoor">
+                        </div>
+                        <div class="author-details">
+                            <h4>Rahul Kapoor</h4>
+                            <p>IT Manager</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card animate-on-scroll">
+                    <div class="testimonial-text">
+                        <p>"The mindfulness workshops taught me practical techniques to manage my screen time. My sleep has improved dramatically since implementing what I learned."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-image">
+                            <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Anjali Patel">
+                        </div>
+                        <div class="author-details">
+                            <h4>Anjali Patel</h4>
+                            <p>Graphic Designer</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="blog">
+        <div class="container">
+            <div class="section-title">
+                <h2>Wellness Corner</h2>
+            </div>
+            <div class="blog-grid">
+                <div class="blog-card animate-on-scroll">
+                    <div class="blog-image">
+                        <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b" alt="Meditation techniques">
+                    </div>
+                    <div class="blog-content">
+                        <h3>5 Meditation Techniques for Beginners</h3>
+                        <div class="blog-meta">June 15, 2023 | Mindfulness</div>
+                        <p>Simple meditation practices to help you start your mindfulness journey and reduce screen anxiety.</p>
+                        <a href="#" class="btn">Read More</a>
+                    </div>
+                </div>
+                <div class="blog-card animate-on-scroll">
+                    <div class="blog-image">
+                        <img src="https://images.unsplash.com/photo-1512295767273-ac109ac3ac1a" alt="Digital minimalism">
+                    </div>
+                    <div class="blog-content">
+                        <h3>Embracing Digital Minimalism</h3>
+                        <div class="blog-meta">May 28, 2023 | Digital Wellness</div>
+                        <p>How to declutter your digital life and create healthier boundaries with technology.</p>
+                        <a href="#" class="btn">Read More</a>
+                    </div>
+                </div>
+                <div class="blog-card animate-on-scroll">
+                    <div class="blog-image">
+                        <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643" alt="Sleep improvement">
+                    </div>
+                    <div class="blog-content">
+                        <h3>Improve Your Sleep by Reducing Screen Time</h3>
+                        <div class="blog-meta">April 12, 2023 | Sleep Health</div>
+                        <p>Practical tips to minimize blue light exposure and create a bedtime routine for better sleep.</p>
+                        <a href="#" class="btn">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Get In Touch</h2>
+            </div>
+            <div class="contact-container animate-on-scroll">
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    <p>Have questions about our programs or ready to book your digital detox experience? Reach out to us through any of the following channels:</p>
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <h4>Location</h4>
+                            <p>123 Wellness Road, Bengaluru, India</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div>
+                            <h4>Phone</h4>
+                            <p>+91 98765 43210</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h4>Email</h4>
+                            <p>info@digitalbox.com</p>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h3>Send Us a Message</h3>
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Your Email</label>
+                            <input type="email" id="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Your Message</label>
+                            <textarea id="message" class="form-control" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h3>Digital Box</h3>
+                    <p>Helping you unplug from digital overload and reconnect with what truly matters through transformative wellness experiences.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                        <li><a href="#blog">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Our Programs</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Weekend Retreats</a></li>
+                        <li><a href="#">Wellness Workshops</a></li>
+                        <li><a href="#">Corporate Programs</a></li>
+                        <li><a href="#">Subscription Plans</a></li>
+                        <li><a href="#">Gift Cards</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to our newsletter for wellness tips and exclusive offers.</p>
+                    <form>
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="Your Email" required>
+                        </div>
+                        <button type="submit" class="btn">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Digital Box. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <div class="scroll-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const header = document.querySelector('header');
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const nav = document.querySelector('nav');
+            const navLinks = document.querySelectorAll('nav a[href^="#"]');
+            const sections = document.querySelectorAll('section[id]');
+            const scrollToTopBtn = document.querySelector('.scroll-to-top');
+            const animatedElements = document.querySelectorAll('.animate-on-scroll');
+
+            // --- Header, Scroll-to-Top, and Active Nav on Scroll ---
+            const handleScroll = () => {
+                // Scrolled Header
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+
+                // Scroll-to-Top Button
+                if (window.scrollY > 300) {
+                    scrollToTopBtn.classList.add('visible');
+                } else {
+                    scrollToTopBtn.classList.remove('visible');
+                }
+
+                // Active Nav Link
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    if (pageYOffset >= sectionTop - 90) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').substring(1) === current) {
+                        link.classList.add('active');
+                    }
+                });
+            };
+
+            window.addEventListener('scroll', handleScroll);
+
+            // --- Mobile Menu Toggle ---
+            mobileMenuBtn.addEventListener('click', () => {
+                nav.classList.toggle('active');
+            });
+
+            // --- Smooth Scrolling for Navigation Links ---
+            navLinks.forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+
+                    if (targetElement) {
+                        nav.classList.remove('active'); // Close mobile menu
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // --- Scroll-to-Top Click ---
+            scrollToTopBtn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            // --- Animate on Scroll using Intersection Observer ---
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            animatedElements.forEach(el => observer.observe(el));
+
+            // --- Form Submission Handlers ---
+            const setupFormHandler = (formSelector, message) => {
+                const form = document.querySelector(formSelector);
+                if (form) {
+                    form.addEventListener('submit', function(e) {
+                        e.preventDefault();
+                        alert(message);
+                        this.reset();
+                    });
+                }
+            };
+
+            setupFormHandler(
+                '.contact-form form', 
+                'Thank you for your message! We will get back to you soon.'
+            );
+            setupFormHandler(
+                '.footer-col form', 
+                'Thank you for subscribing to our newsletter!'
+            );
+        });
+    </script>
+</body>
+</html>
