@@ -1122,6 +1122,31 @@
                 'Thank you for subscribing to our newsletter!'
             );
         });
-    </script>
+    </script
+        import React, { useState } from 'react';
+
+function App() {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const handleLogin = () => {
+    // Call API to login user
+    setIsLoggedIn(true);
+  };
+
+  return (
+    <div>
+      {isLoggedIn ? (
+        <p>Welcome, {username}!</p>
+      ) : (
+        <form>
+          <input
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            placeholder="Username
+        
 </body>
 </html>
+
